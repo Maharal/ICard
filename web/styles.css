@@ -1,3 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
 body {
     background-color:#1d1d1d !important;
     font-family: "Asap", sans-serif;
@@ -232,3 +246,10 @@ body {
         font-size: 0.9em;
       }
   
+.loginDiv {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
