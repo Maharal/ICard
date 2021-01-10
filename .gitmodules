@@ -1,0 +1,3 @@
+[submodule "pds-icard"]
+	path = pds-icard
+	url = https://git.heroku.com/pds-icard.git
