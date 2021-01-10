@@ -21,4 +21,4 @@ O objetivo do ICard é ser uma plataforma web de cartões de visita digital. A g
 - *backend:* python, Django, PostgreSQL e Heroku
 - *frontend:* javascript, css e html
 
-
+Utilizar 'git submodule update --init' para carregar os arquivos do heroku
