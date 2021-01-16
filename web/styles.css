@@ -132,7 +132,7 @@ body {
         top: 10%;
         right: -2px;
         height: 80%;
-        border-left: 2px solid rgba(0,0,0,0.025);*/
+        border-left: 2px solid rgba(0,0,0,0.025);
       }
       
       .card .additional .user-card .level,
@@ -245,22 +245,49 @@ body {
         right: 1rem;
         font-size: 0.9em;
       }
-  
+
+.background {
+  background-image: url("imgs/black-and-white-city-man-people.jpg");
+
+  /* Add blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+  display: block;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .loginDiv {
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.5);
+  color: white;
+}
+
+.login-title {
+  text-align: center;
+  padding-bottom: 35px;
 }
 
 .btnLogin {
-  margin-left: 130px;
+  margin-top: 25px;
   display:block;
 }
 
 .loginForm label {
   display: inline-block;
-  width: 140px;
+  width: 15vw;
   text-align: right;
 }​
