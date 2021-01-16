@@ -11,19 +11,47 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <div class="loginDiv">
+    <div class="background"></div>
+    <div class="loginDiv jumbotron">
+        <h2 class="login-title">Sign up</h2>
         <form class="loginForm" action="/todo" method="post">
-            <label for="firstName">Nome:</label>
-            <input type="text" id="firstName" name="firstName"><br><br>
-            <label for="lastName">Sobrenome:</label>
-            <input type="text" id="lastName" name="lastName"><br><br>
-            <label for="user">Usuário:</label>
-            <input type="text" id="user" name="user"><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" minlength="8"><br><br>
-            <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">        
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-3 col-form-label col-form-label">Nome:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Example">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="lastName" class="col-sm-3 col-form-label col-form-label">Sobrenome:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="User">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="user" class="col-sm-3 col-form-label col-form-label">Usuário:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="user" name="user" placeholder="ExampleUsername">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label col-form-label">Email:</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="exampleuser@email.com">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label col-form-label">Senha:</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="password">
+                </div>
+            </div>
+            <div class="btnLogin d-flex justify-content-center">
+                <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">
+            </div>
         </form>
     </div>
 </body>
