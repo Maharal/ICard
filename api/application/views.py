@@ -28,3 +28,12 @@ class GroupViewSet(viewsets.ModelViewSet):
 def home(request):
     context = {}
     return render(request, "home.html", context)
+
+def login(request):
+    context = {}
+    return render(request, "html/login.html", context)
+
+def signup(request):
+    context = {}
+    return render(request, "html/signup.html", context)
+

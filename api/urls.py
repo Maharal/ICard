@@ -23,7 +23,6 @@ from api.application import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^home/$', views.home)
 ]
 
 router = routers.DefaultRouter()
@@ -35,5 +34,7 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^home/$', views.home)
+    url(r'^home/$', views.home),
+    url(r'^login/$', views.login),
+    url(r'^signup/$', views.signup)
 ]
