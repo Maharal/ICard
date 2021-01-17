@@ -248,7 +248,7 @@ body {
       }
 
 .background {
-  background-image: url("imgs/black-and-white-city-man-people.jpg");
+  background-image: url("'{{ STATIC_URL }}/imgs/background.jpg");
 
   /* Add blur effect */
   filter: blur(8px);
