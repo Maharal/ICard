@@ -248,7 +248,7 @@ body {
       }
 
 .background {
-  background-image: url("imgs/meme.jpg");
+  background-image: url("imgs/background.jpg");
 
   /* Add blur effect */
   filter: blur(8px);
