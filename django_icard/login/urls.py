@@ -1,7 +1,7 @@
 from django.conf.urls import url
-from django_icard.login import views as core_views
+from .views import signup
 
 
 urlpatterns = [
-    url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^signup/$', signup, name='signup'),
 ]
