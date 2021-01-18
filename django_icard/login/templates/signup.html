@@ -1,60 +1,62 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICard - Signup</title>
+{% block title %}Cadastro{% endblock %}
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% block content %}
+<div class="background"></div>
+<div class="loginDiv jumbotron">
+    <h2 class="login-title">Cadastro</h2>
+    <form class="loginForm" method="post">
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="background"></div>
-    <div class="loginDiv jumbotron">
-        <h2 class="login-title">Sign up</h2>
-        <form class="loginForm" action="/todo" method="post">
-            <div class="form-group row">
+        {{ form.path }}
+
+        <div class="form-group row">
                 <label class="form-cell col-sm-12">
-                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder=" ">
+                    <input type="text" class="form-control" id="id_first_name" name="first_name" placeholder=" ">
                     <span class="placeholder">Nome</span>
                 </label>
             </div>
 
             <div class="form-group row">
                 <label class="form-cell col-sm-12">
-                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder=" ">
+                    <input type="text" class="form-control" id="id_last_name" name="last_name" placeholder=" ">
                     <span class="placeholder">Sobrenome</span>
                 </label>
             </div>
 
             <div class="form-group row">
                 <label class="form-cell col-sm-12">
-                    <input type="text" class="form-control" id="user" name="user" placeholder=" ">
+                    <input type="text" class="form-control" id="id_user_name" name="username" placeholder=" ">
                     <span class="placeholder">Usuário</span>
                 </label>
             </div>
 
             <div class="form-group row">
                 <label class="form-cell col-sm-12">
-                    <input type="email" class="form-control" id="email" name="email" placeholder=" ">
+                    <input type="email" class="form-control" id="id_email" name="email" placeholder=" ">
                     <span class="placeholder">E-mail</span>
                 </label>
             </div>
 
             <div class="form-group row">
                 <label class="form-cell col-sm-12">
-                    <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder=" ">
+                    <input type="password" class="form-control" id="id_password1" name="password1" minlength="8" placeholder=" ">
                     <span class="placeholder">Senha</span>
                 </label>
             </div>
-            <div class="btnLogin d-flex justify-content-center">
-                <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="password" class="form-control" id="id_password2" name="password2" minlength="8" placeholder=" ">
+                    <span class="placeholder">Confirmação da Senha</span>
+                </label>
             </div>
-        </form>
-    </div>
-</body>
-</html>
+
+        {% csrf_token %}
+
+        <div class="btnLogin d-flex justify-content-center">
+            <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">
+        </div>
+    </form>
+</div>
+{% endblock %}
