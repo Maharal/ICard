@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE Customer (
    id                  INT PRIMARY KEY NOT NULL,
    photo_url           TEXT,
    birth_day           DATE,
@@ -21,15 +21,15 @@ CREATE TABLE Card (
    update_date         DATE NOT NULL,    
    CONSTRAINT fk_owner_user
       FOREIGN KEY (id_user) 
-	  REFERENCES User(id)
+	  REFERENCES Customer(id)
 );
 
 
-CREATE TABLE favorite (
+CREATE TABLE Favorite (
     id                  INT PRIMARY KEY NOT NULL,
     id_user             INT NOT NULL, 
    creation_date       DATE NOT NULL DEFAULT CURRENT_DATE,
     CONSTRAINT fk_favorite_user
       FOREIGN KEY (id_user) 
-	  REFERENCES User(id)
+	  REFERENCES Customer(id)
 );
