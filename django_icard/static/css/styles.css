@@ -1,0 +1,328 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+body {
+    background-color:#1d1d1d !important;
+    font-family: "Asap", sans-serif;
+    color:#989898;
+    margin:10px;
+    font-size:16px;
+  }
+  
+  #demo {
+    height:100%;
+    position:relative;
+    overflow:hidden;
+  }
+  
+  
+  .green{
+    background-color:#6fb936;
+  }
+          .thumb{
+              margin-bottom: 30px;
+          }
+          
+          .page-top{
+              margin-top:85px;
+          }
+  
+     
+  img.zoom {
+      width: 100%;
+      height: 200px;
+      border-radius:5px;
+      object-fit:cover;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -o-transition: all .3s ease-in-out;
+      -ms-transition: all .3s ease-in-out;
+  }
+          
+   
+  .transition {
+      -webkit-transform: scale(1.2); 
+      -moz-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+  }
+      .modal-header {
+     
+       border-bottom: none;
+  }
+      .modal-title {
+          color:#000;
+      }
+      .modal-footer{
+        display:none;  
+      }
+
+      @import url('https://fonts.googleapis.com/css?family=Abel');
+
+      html, body {
+        /* background: #FCEEB5; */
+        font-family: Abel, Arial, Verdana, sans-serif;
+      }
+      
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+      }
+      
+      .card {
+        width: 450px;
+        height: 250px;
+        background-color: #fff;
+        background: linear-gradient(#f8f8f8, #fff);
+        box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+        margin: 1.5rem;
+      }
+      
+      .card h1 {
+        text-align: center;
+      }
+      
+      .card .additional {
+        position: absolute;
+        width: 150px;
+        height: 100%;
+        background: linear-gradient(#dE685E, #EE786E);
+        transition: width 0.4s;
+        overflow: hidden;
+        z-index: 2;
+      }
+      
+      .card.green .additional {
+        background: linear-gradient(#92bCa6, #A2CCB6);
+      }
+      
+      
+      .card:hover .additional {
+        width: 100%;
+        border-radius: 0 5px 5px 0;
+      }
+      
+      .card .additional .user-card {
+        width: 150px;
+        height: 100%;
+        position: relative;
+        float: left;
+      }
+      
+      .card .additional .user-card::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 10%;
+        right: -2px;
+        height: 80%;
+        border-left: 2px solid rgba(0,0,0,0.025);
+      }
+      
+      .card .additional .user-card .level,
+      .card .additional .user-card .points {
+        top: 15%;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        font-weight: bold;
+        background: rgba(0,0,0,0.15);
+        padding: 0.125rem 0.75rem;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      
+      .card .additional .user-card .points {
+        top: 85%;
+      }
+      
+      .card .additional .user-card svg {
+        top: 50%;
+      }
+      
+      .card .additional .more-info {
+        width: 300px;
+        float: left;
+        position: absolute;
+        left: 150px;
+        height: 100%;
+      }
+      
+      .card .additional .more-info h1 {
+        color: #fff;
+        margin-bottom: 0;
+      }
+      
+      .card.green .additional .more-info h1 {
+        color: #224C36;
+      }
+      
+      .card .additional .coords {
+        margin: 0 1rem;
+        color: #fff;
+        font-size: 1rem;
+      }
+      
+      .card.green .additional .coords {
+        color: #325C46;
+      }
+      
+      .card .additional .coords span + span {
+        float: right;
+      }
+      
+      .card .additional .stats {
+        font-size: 2rem;
+        display: flex;
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        top: auto;
+        color: #fff;
+      }
+      
+      .card.green .additional .stats {
+        color: #325C46;
+      }
+      
+      .card .additional .stats > div {
+        flex: 1;
+        text-align: center;
+      }
+      
+      .card .additional .stats i {
+        display: block;
+      }
+      
+      .card .additional .stats div.title {
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      .card .additional .stats div.value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+      }
+      
+      .card .additional .stats div.value.infinity {
+        font-size: 2.5rem;
+      }
+      
+      .card .general {
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        box-sizing: border-box;
+        padding: 1rem;
+        padding-top: 0;
+      }
+      
+      .card .general .more {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.9em;
+      }
+
+.background {
+  background-image: url("imgs/background.jpg");
+
+  /* Add blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+  display: block;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginDiv {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.5);
+  color: white;
+}
+
+.login-title {
+  text-align: center;
+  padding-bottom: 35px;
+}
+
+.btnLogin {
+  margin-top: 25px;
+  display:block;
+}
+
+.loginForm {
+  width: 30vw;
+}
+
+.form-cell {
+  margin-top: 5px;
+  position:relative;
+  display:inline-block;
+}
+  
+.placeholder {
+  padding: 7px 25px;
+  pointer-events: none;
+  position:absolute;
+  left: 0;
+  top: 0;
+  transition: 0.2s;
+  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity:0.5;
+  color: gray;
+}
+
+input {
+  padding: 10px;
+}
+
+input:focus + .placeholder, input:not(:placeholder-shown) + .placeholder {
+  opacity:1;
+  transform: scale(0.8) translateY(-100%) translateX(-20px);
+  color: white;
+}
+
+/* For IE Browsers*/
+input:focus + .placeholder, input:not(:-ms-input-placeholder) + .placeholder {
+  opacity:1;
+  transform: scale(0.8) translateY(-100%) translateX(-20px);
+  color: white;
+}

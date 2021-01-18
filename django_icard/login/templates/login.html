@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICard - Login</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="loginDiv jumbotron">
+        <h2 class="login-title">Login</h2>
+        <form class="loginForm" action="/todo" method="post">
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="email" class="form-control " id="email" name="email" placeholder=" ">
+                    <span class="placeholder">E-mail</span>
+                </label>
+            </div>
+            
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder=" ">
+                    <span class="placeholder">Senha</span>
+                </label>
+            </div>
+
+            <div class="btnLogin d-flex justify-content-center">
+                <input class="btn btn-success" type="submit" value="Entrar">
+            </div>        
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+<div class="background"></div>
+<div class="loginDiv jumbotron">
+    <h2 class="login-title">Cadastro</h2>
+    <form class="loginForm" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="btnLogin d-flex justify-content-center">
+            <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">
+        </div>
+    </form>
+</div>
+{% endblock %}
