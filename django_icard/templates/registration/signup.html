@@ -7,8 +7,43 @@
 <div class="loginDiv jumbotron">
     <h2 class="login-title">Cadastro</h2>
     <form class="loginForm" method="post">
+
+        <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder=" ">
+                    <span class="placeholder">Nome</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder=" ">
+                    <span class="placeholder">Sobrenome</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="user" name="user" placeholder=" ">
+                    <span class="placeholder">Usuário</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="email" class="form-control" id="email" name="email" placeholder=" ">
+                    <span class="placeholder">E-mail</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder=" ">
+                    <span class="placeholder">Senha</span>
+                </label>
+            </div>
+
         {% csrf_token %}
-        {{ form.as_p }}
 
         <div class="btnLogin d-flex justify-content-center">
             <input class="btn btn-success btnLogin" type="submit" value="Cadastrar-se">
