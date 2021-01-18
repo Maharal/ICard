@@ -22,3 +22,22 @@ O objetivo do ICard é ser uma plataforma web de cartões de visita digital. A g
 - *frontend:* javascript, css e html
 
 Utilizar 'git submodule update --init' para carregar os arquivos do heroku
+
+## Sprint 1
+
+### Histórias e tarefas
+- Ter uma aplicação de DJango e conseguir subir para o heroku (Raphael e Wanderson)
+- Ter o site rodando no heroku
+  - Rodar um hello world no heroku (Guilherme)
+  - Decidir um template para o site (Guilherme e Victor)
+- O usuário pode criar um cadastro
+  - Criar tela de cadastro e de login (Guilherme e Victor)
+
+### Testes
+Adicionar seção de testes aqui
+
+### Retrospectiva
+- O que deu certo no sprint? Quais foram os pontos mais positivos?
+  - R.: Adicionar
+- O que deu errado no sprint? Onde e o que podemos melhorar?
+  - R.: Adicionar
