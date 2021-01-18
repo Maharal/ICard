@@ -38,6 +38,6 @@ Adicionar seção de testes aqui
 
 ### Retrospectiva
 - O que deu certo no sprint? Quais foram os pontos mais positivos?
-  - R.: Adicionar
+  - R.: Conseguimos criar um fluxo para subir a aplicação no Heroku e preparamos o ambiente para execução de testes, além de criarmos alguns testes iniciais.
 - O que deu errado no sprint? Onde e o que podemos melhorar?
-  - R.: Adicionar
+  - R.: Dificuldade de criação e manutenção da aplicação Django, bem como problemas ao subir a aplicação para o Heroku.
