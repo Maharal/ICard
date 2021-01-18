@@ -34,7 +34,11 @@ Utilizar 'git submodule update --init' para carregar os arquivos do heroku
   - Criar tela de cadastro e de login (Guilherme e Victor)
 
 ### Testes
-Adicionar seção de testes aqui
+Durante a 1ª sprint foream criados testes unitários para verificar alterações no layout da aplicação, o principal objetivo foi garantir que mudançãs de layout não removam elementos necessários para o funcionamento da página. Os testes foram distribuidos nas seguintes classes:
+-HomePageTest
+-LoginTest
+-SignupTest
+Cada classe é responsável por testar uma página da aplicação, de forma que os testes podem ser ampliados com facilidade nas implementações futuras. Por fim, os testes apresentaram uma cobertura total de 81%.
 
 ### Retrospectiva
 - O que deu certo no sprint? Quais foram os pontos mais positivos?
