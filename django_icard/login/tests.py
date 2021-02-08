@@ -78,6 +78,16 @@ class SignUpFormTest(TestCase):
         form = SignUpForm(data=form_data)
         self.assertFalse(form.is_valid())
 
+    def test_short_password(self):
+        form_data = {'username': 'Joseph123', 'first_name': 'Joseph', 'last_name': 'Klimber', 'email': 'joseph@klimber.com', 'password1': 'senha123', 'password2': 'senha123'} # password min length = 8
+        form = SignUpForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_unmatching_passwords(self):
+        form_data = {'username': 'Joseph123', 'first_name': 'Joseph', 'last_name': 'Klimber', 'email': 'joseph@klimber.com', 'password1': 'senha123', 'password2': 'senha456'}
+        form = SignUpForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
 class CardTests(TestCase):
     def test_form_success(self):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link'}
