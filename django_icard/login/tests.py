@@ -4,7 +4,7 @@ from django.http import HttpRequest
 
 from .views import home_page, login, signup
 
-from .forms import CardForm
+from .forms import CardForm, SignUpForm
 
 class HomePageTest(TestCase):
 
@@ -67,6 +67,16 @@ class SignupTest(TestCase):
         html = response.content.decode('utf8')
         self.assertIn('<input type="password" class="form-control" id="id_password2" name="password2" minlength="8" placeholder=" ">', html)
 
+class SignUpFormTest(TestCase):
+    def test_form_success(self):
+        form_data = {'username': 'Joseph123', 'first_name': 'Joseph', 'last_name': 'Klimber', 'email': 'joseph@klimber.com', 'password1': 'senha123456', 'password2': 'senha123456'}
+        form = SignUpForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_incomplete_form(self):
+        form_data = {'username': 'Joseph123', 'first_name': 'Joseph', 'last_name': 'Klimber', 'email': 'joseph@klimber.com', 'password1': 'senha123456'} # missing password2
+        form = SignUpForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
 class CardTests(TestCase):
     def test_form_success(self):
