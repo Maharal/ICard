@@ -73,3 +73,8 @@ class CardTests(TestCase):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link'}
         form = CardForm(data=form_data)
         self.assertTrue(form.is_valid())
+
+    def test_form_fail(self):
+        form_data = {'name': 'Toby', 'profile_image': 'link'}  # missing description
+        form = CardForm(data=form_data)
+        self.assertFalse(form.is_valid())
