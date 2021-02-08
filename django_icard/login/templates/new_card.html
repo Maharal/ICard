@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="background"></div>
+    <div class="loginDiv jumbotron">
+        <h2 class="login-title">Adicionar cartão</h2>
+        <form class="loginForm" method="post">
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control " id="name" name="name" placeholder=" ">
+                    <span class="placeholder">Nome</span>
+                </label>
+            </div>
+            
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="description" name="description" placeholder=" ">
+                    <span class="placeholder">Descrição</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="profile_image" name="profile_image" placeholder=" ">
+                    <span class="placeholder">Imagem de perfil</span>
+                </label>
+            </div>
+
+            {% csrf_token %}
+
+            <div class="btnLogin d-flex justify-content-center">
+                <input class="btn btn-success" type="submit" value="Adicionar">
+            </div>
+        </form>
+    </div>
+{% endblock %}

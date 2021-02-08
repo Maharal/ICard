@@ -11,3 +11,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
+
+class CardForm(forms.Form):
+    name = forms.CharField(label='name', max_length=100)
+    description = forms.CharField(label='description', max_length=280)
+    profile_image = forms.CharField(label='profile_image', max_length=280)
