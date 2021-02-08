@@ -5,7 +5,7 @@ from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-from .forms import SignUpForm
+from .forms import SignUpForm, CardForm
 
 # Create your views here.
 def home_page(request):
@@ -26,3 +26,15 @@ def signup(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def get_card(request):
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+        if form.is_valid():
+            print("Válido!")
+            return render(request, 'home.html')
+
+    else:
+        form = CardForm()
+
+    return render(request, 'new_card.html', {'form': form})
