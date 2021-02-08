@@ -2,7 +2,9 @@ from django.urls import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 
-from login.views import home_page, login, signup
+from .views import home_page, login, signup
+
+from .forms import CardForm
 
 class HomePageTest(TestCase):
 
@@ -64,3 +66,10 @@ class SignupTest(TestCase):
         response = signup(request)
         html = response.content.decode('utf8')
         self.assertIn('<input type="password" class="form-control" id="id_password2" name="password2" minlength="8" placeholder=" ">', html)
+
+
+class CardTests(TestCase):
+    def test_form_success(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
