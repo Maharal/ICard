@@ -1,7 +1,10 @@
+import datetime
+import re
+
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from json import dumps 
+from json import dumps
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -9,12 +12,15 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm, CardForm
 from .models import Card
 
+
 # Create your views here.
 def home_page(request):
     return render(request, 'home.html')
 
+
 def login(request):
     return render(request, 'login.html')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -26,13 +32,16 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+
 def profile(request):
     return render(request, 'profile.html')
+
 
 def get_card(request):
     if request.method == 'POST':
         form = CardForm(request.POST)
         if form.is_valid() and request.user.is_authenticated:
+
             form = form.save(commit=False)
             form.user = request.user
             form.save()
@@ -43,13 +52,16 @@ def get_card(request):
 
     return render(request, 'new_card.html', {'form': form})
 
+
 def get_all_cards(request):
     cards = Card.objects.all()
     return render(request, 'home.html', {'cards': dumps(cards)})
 
+
 def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
+
 
 def update_card(request, id):
     card = Card(id=id)
@@ -67,6 +79,7 @@ def update_card(request, id):
         form.description = card.description
         form.profile_image = card.profile_image
         return render(request, 'new_card.html', {'form': form})
+
 
 def remove_card(request, id):
     card = Card(id=id)
