@@ -39,13 +39,13 @@ def profile(request):
 
 def get_card(request):
     if request.method == 'POST':
-        form = CardForm(request.POST)
+        form = CardForm(request.POST, request.FILES)
         if form.is_valid() and request.user.is_authenticated:
 
             form = form.save(commit=False)
             form.user = request.user
             form.save()
-            return render(request, 'home.html')
+            return redirect('/')
 
     else:
         form = CardForm()

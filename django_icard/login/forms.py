@@ -23,7 +23,7 @@ class SignUpForm(UserCreationForm):
 class CardForm(forms.ModelForm):
     name = forms.CharField(label='name', max_length=100)
     description = forms.CharField(label='description', max_length=280)
-    profile_image = forms.CharField(label='profile_image', max_length=280)
+    profile_image = forms.FileField(label='profile_image', required=False)
     contact_email = forms.CharField(label='contact_email', max_length=280)
     contact_phone = forms.CharField(label='contact_phone', max_length=280)
     birthday = forms.CharField(label='birthday', max_length=280)
