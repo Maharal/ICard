@@ -90,7 +90,7 @@ class SignUpFormTest(TestCase):
 
 class CardTests(TestCase):
     def test_form_success(self):
-        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link'}
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link', 'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999', 'birthday': '1983-09-30'}
         form = CardForm(data=form_data)
         self.assertTrue(form.is_valid())
 

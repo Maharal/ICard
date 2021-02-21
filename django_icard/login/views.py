@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -33,10 +35,20 @@ def get_card(request):
     if request.method == 'POST':
         form = CardForm(request.POST)
         if form.is_valid() and request.user.is_authenticated:
-            form = form.save(commit=False)
-            form.user = request.user
-            form.save()
-            return render(request, 'home.html')
+
+            year = int(form.cleaned_data['birthday'][0:4])
+            month = int(form.cleaned_data['birthday'][5:7])
+            day = int(form.cleaned_data['birthday'][8:])
+            birth = datetime.datetime(year, month, day)
+            age = datetime.datetime.now() - birth
+
+            if age.days > 365 * 100 or age.days < 365 * 16:
+                form = CardForm()
+            else:
+                form = form.save(commit=False)
+                form.user = request.user
+                form.save()
+                return render(request, 'home.html')
 
     else:
         form = CardForm()
