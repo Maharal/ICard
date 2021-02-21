@@ -8,6 +8,7 @@
   <!-- Page Content -->
   <div class="container page-top">
     <div class="row">
+      {% for person in cards %}
         <div class="col-lg-12 col-md-12 col-xs-12 thumb d-flex justify-content-center unique-card">
             <div class="card">
                 <div class="additional">
@@ -15,28 +16,29 @@
                     <img src="../static/css/imgs/default_profile_picture.jpg" height="100" width="100" class="center">
                   </div>
                   <div class="more-info">
-                    <h1>Jane Doe</h1>
+                    <h1>{{ person.name }}</h1>
                     <div class="birthday">
                       <i class="fa fa-birthday-cake"></i>
-                      <span>01/01/1990</span>
+                      <span>{{ person.birthday }}</span>
                     </div>
                     <div class="email">
                       <i class="fa fa-envelope"></i>
-                      <span>generic@mail.com</span>
+                      <span>{{ person.contact_email }}</span>
                     </div>
                     <div class="phone">
                       <i class="fa fa-phone"></i>
-                      <span>97070-7070</span>
+                      <span>{{ person.contact_phone }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="general">
-                  <h1>Jane Doe</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
+                  <h1>{{ person.name }}</h1>
+                  <p>{{ person.description }}</p>
                   <span class="more">Mouse over the card for more info</span>
                 </div>
             </div>
         </div>
+      {% endfor %}
    </div>
 </div>
 {% else %}

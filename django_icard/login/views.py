@@ -15,7 +15,10 @@ from .models import Card
 
 # Create your views here.
 def home_page(request):
-    return render(request, 'home.html')
+    cards = Card.objects.filter(user=request.user.id)
+    print(cards)
+    return render(request, 'home.html', {'cards': cards})
+    # return render(request, 'home.html')
 
 
 def login(request):
@@ -55,6 +58,7 @@ def get_card(request):
 
 def get_all_cards(request):
     cards = Card.objects.all()
+    print("Testando")
     return render(request, 'user_cards.html')
     # return render(request, 'home.html', {'cards': dumps(cards)})
 
