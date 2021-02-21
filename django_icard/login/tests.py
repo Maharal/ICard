@@ -94,7 +94,22 @@ class CardTests(TestCase):
         form = CardForm(data=form_data)
         self.assertTrue(form.is_valid())
 
+    def test_form_fail_phone(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link', 'contact_email': 'michael@dundermifflin.com', 'contact_phone': '931', 'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_form_fail_birthday(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link', 'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999', 'birthday': '2010-09-30'}
+        form = CardForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_form_fail_both_phone_birthday(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link', 'contact_email': 'michael@dundermifflin.com', 'contact_phone': '931', 'birthday': '2010-09-30'}
+        form = CardForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
     def test_form_fail(self):
-        form_data = {'name': 'Toby', 'profile_image': 'link'}  # missing description
+        form_data = {'name': 'Toby', 'profile_image': 'link'}  # missing fields
         form = CardForm(data=form_data)
         self.assertFalse(form.is_valid())
