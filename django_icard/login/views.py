@@ -55,7 +55,8 @@ def get_card(request):
 
 def get_all_cards(request):
     cards = Card.objects.all()
-    return render(request, 'home.html', {'cards': dumps(cards)})
+    return render(request, 'user_cards.html')
+    # return render(request, 'home.html', {'cards': dumps(cards)})
 
 
 def get_user_cards(request):

@@ -155,6 +155,10 @@ body {
       .card .additional .user-card svg {
         top: 50%;
       }
+
+      .card .additional .user-card img {
+        top: 50%;
+      }
       
       .card .additional .more-info {
         width: 300px;
@@ -173,7 +177,13 @@ body {
         color: #224C36;
       }
       
-      .card .additional .coords {
+      .card .additional .more-info > div {
+        margin: 1rem 2rem;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      .card .additional .phone {
         margin: 0 1rem;
         color: #fff;
         font-size: 1rem;
@@ -185,30 +195,6 @@ body {
       
       .card .additional .coords span + span {
         float: right;
-      }
-      
-      .card .additional .stats {
-        font-size: 2rem;
-        display: flex;
-        position: absolute;
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
-        top: auto;
-        color: #fff;
-      }
-      
-      .card.green .additional .stats {
-        color: #325C46;
-      }
-      
-      .card .additional .stats > div {
-        flex: 1;
-        text-align: center;
-      }
-      
-      .card .additional .stats i {
-        display: block;
       }
       
       .card .additional .stats div.title {
@@ -244,6 +230,10 @@ body {
         bottom: 1rem;
         right: 1rem;
         font-size: 0.9em;
+      }
+
+      .unique-card {
+        margin-top: 10vh;
       }
 
 .background {
