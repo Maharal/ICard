@@ -40,7 +40,8 @@ def get_card(request):
 
     else:
         form = CardForm()
-        return render(request, 'new_card.html', {'form': form})
+
+    return render(request, 'new_card.html', {'form': form})
 
 def get_all_cards(request):
     cards = Card.objects.all()
