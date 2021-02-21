@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Card(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    profile_image = models.CharField(max_length=255)
+    profile_image = models.ImageField(max_length=255, upload_to='image')
     created_on = models.DateTimeField(auto_now_add=True)
     birthday = models.DateField(max_length=30)
     contact_email = models.EmailField(max_length=255)
