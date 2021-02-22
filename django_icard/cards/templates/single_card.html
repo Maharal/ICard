@@ -44,7 +44,10 @@
     <a href="{% url 'edit_card' card.id %}" class="card-button">
         <button class=" btn btn-success">Editar Cartão</button>
     </a>
-    <button class=" btn btn-danger card-button">Excluir Cartão</button>
+    <form method="post">
+        <input class="btn btn-danger" type="submit" value="Excluir Cartão">
+        {% csrf_token %}
+    </form>
 </div>
 {% endif %}
 
