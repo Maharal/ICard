@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,7 +30,7 @@ urlpatterns = [
     path('cards/', include('django.contrib.auth.urls')),
     path('getAllCards/', TemplateView.as_view(template_name='home.html'), name='get_all_cards'),
     path('newCard/', TemplateView.as_view(template_name='new_card.html'), name='get_card'),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', RedirectView.as_view(url='/cards', permanent=False), name='home'),
 ]
 
 if settings.DEBUG:

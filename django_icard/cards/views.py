@@ -48,7 +48,7 @@ def get_card(request):
             form = form.save(commit=False)
             form.user = request.user
             form.save()
-            return redirect('/')
+            return redirect('/cards')
 
     else:
         form = CardForm()

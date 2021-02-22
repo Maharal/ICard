@@ -152,7 +152,7 @@ class IntegrationTests(TestCase):
         form.save()
 
         c = Client()
-        response = c.post('/login/login/', {'username': 'jimhalpert', 'password': 'hEtz6Z78ZqM8dSRV'})
+        response = c.post('/cards/login/', {'username': 'jimhalpert', 'password': 'hEtz6Z78ZqM8dSRV'})
         self.assertEqual(response.status_code, 302)
 
         form_data = {'name': 'Jim', 'description': 'The best paper salesman', 'profile_image': 'image/185388.png',
@@ -181,9 +181,9 @@ class IntegrationTests(TestCase):
         form.save()
 
         c = Client()
-        response = c.post('/login/login/', {'username': 'jimhalpert', 'password': 'outrasenha'})
+        response = c.post('/cards/login/', {'username': 'jimhalpert', 'password': 'outrasenha'})
         self.assertNotEqual(response.status_code, 302)
 
         c = Client()
-        response = c.post('/login/login/', {'username': 'michael', 'password': 'hEtz6Z78ZqM8dSRV'})
+        response = c.post('/cards/login/', {'username': 'michael', 'password': 'hEtz6Z78ZqM8dSRV'})
         self.assertNotEqual(response.status_code, 302)
