@@ -30,7 +30,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/login/login')
+            return redirect('/cards/login')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})

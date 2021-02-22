@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from login import views
 from django.views.generic.base import TemplateView
 
 from django.conf import settings
@@ -27,8 +26,8 @@ urlpatterns = [
     #url(r'^login/$', views.login, name='login'),
     #url(r'^signup/$', views.signup, name='signup'),
     path('admin/', admin.site.urls),
-    path('login/', include('login.urls')),
-    path('login/', include('django.contrib.auth.urls')),
+    path('cards/', include('cards.urls')),
+    path('cards/', include('django.contrib.auth.urls')),
     path('getAllCards/', TemplateView.as_view(template_name='home.html'), name='get_all_cards'),
     path('newCard/', TemplateView.as_view(template_name='new_card.html'), name='get_card'),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -36,5 +35,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-print(urlpatterns)
