@@ -162,6 +162,43 @@ class IntegrationTests(TestCase):
         cards = Card.objects.filter(contact_email='jimhalpert@dundermifflin.com')
         self.assertEqual(len(cards), 2)
 
+        form_data = {'name': 'Jim', 'description': 'World\'s second Best Boss', 'profile_image': 'link',
+                     'contact_email': 'jimhalpert@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        cards = Card.objects.filter(contact_email='jimhalpert@dundermifflin.com')
+
+        self.assertEqual(len(cards), 3)
+
+        card_id = cards[2].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Jim Dunder', 'description': 'World\'s second Best Boss',
+                           'profile_image': 'link', 'contact_email': 'jimhalpert@dundermifflin.com',
+                           'contact_phone': '31999999999', 'birthday': '1983-09-30'})
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='jimhalpert@dundermifflin.com')
+        card_name = cards[2].name
+        self.assertEqual('Jim Dunder', card_name)
+
+        self.assertEqual(len(cards), 3)
+
+        # get card id
+        cards = Card.objects.filter(contact_email='jimhalpert@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/card/' + str(card_id) + '/')
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='jimhalpert@dundermifflin.com')
+        self.assertEqual(len(cards), 2)
+
     def test_signup_and_login_fail(self):
         form_data = {'username': 'jimhalpert', 'first_name': 'Jim', 'last_name': 'Halpert',
                      'email': 'jimhalpert@dundermifflin.com', 'password1': 'hEtz6Z78ZqM8dSRV',
@@ -191,16 +228,17 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael Dunder', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
-                     'birthday': '1983-09-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael Dunder', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                           'birthday': '1983-09-30'})
         self.assertEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
         card_name = cards[0].name
         self.assertEqual('Michael Dunder', card_name)
 
-    def test_card_edit_description(self):   
+    def test_card_edit_description(self):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
                      'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
                      'birthday': '1983-09-30'}
@@ -213,9 +251,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss of 2020', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
-                     'birthday': '1983-09-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss of 2020', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                           'birthday': '1983-09-30'})
         self.assertEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -235,9 +274,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dunder.com', 'contact_phone': '31999999999',
-                     'birthday': '1983-09-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dunder.com', 'contact_phone': '31999999999',
+                           'birthday': '1983-09-30'})
         self.assertEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -259,9 +299,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
-                     'birthday': '1983-10-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                           'birthday': '1983-10-30'})
         self.assertEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -281,9 +322,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
-                     'birthday': '2018-10-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                           'birthday': '2018-10-30'})
         self.assertNotEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -303,9 +345,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
-                     'birthday': '1800-10-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                           'birthday': '1800-10-30'})
         self.assertNotEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -325,9 +368,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '991',
-                     'birthday': '1983-09-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '991',
+                           'birthday': '1983-09-30'})
         self.assertNotEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
@@ -347,9 +391,10 @@ class IntegrationTests(TestCase):
         card_id = cards[0].id
 
         c = Client()
-        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
-                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '123431999999999',
-                     'birthday': '1983-09-30'})
+        response = c.post('/cards/edit_card/' + str(card_id) + '/',
+                          {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                           'contact_email': 'michael@dundermifflin.com', 'contact_phone': '123431999999999',
+                           'birthday': '1983-09-30'})
         self.assertNotEqual(response.status_code, 302)
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
