@@ -3,8 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-
   <!-- Page Content -->
   <div class="container page-top">
     <div class="row">
@@ -47,11 +45,4 @@
       {% endfor %}
    </div>
 </div>
-{% else %}
-<div class="background"></div>
-<div class="loginDiv jumbotron">
-    <h2 class="login-title">Por favor faça o login para continuar</h2>
-    <a href="{% url 'login' %}">Log In</a>
-</div> 
-{% endif %}
 {% endblock %}

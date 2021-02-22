@@ -323,3 +323,7 @@ input:focus + .placeholder, input:not(:-ms-input-placeholder) + .placeholder {
 .profile-image {
   border-radius: 50%;
 }
+
+.nav-item {
+  white-space: nowrap;
+}
