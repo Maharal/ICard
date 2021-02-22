@@ -55,6 +55,11 @@ def get_card(request):
 
     return render(request, 'new_card.html', {'form': form})
 
+def card(request, card_id):
+    cards = Card.objects.filter(id=card_id)
+    print(cards[0])
+    return render(request, 'single_card.html', {'card': cards[0]})
+
 
 def get_all_cards(request):
     cards = Card.objects.all()

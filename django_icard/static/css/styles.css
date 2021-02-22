@@ -315,3 +315,7 @@ input:focus + .placeholder, input:not(:-ms-input-placeholder) + .placeholder {
   transform: scale(0.8) translateY(-100%) translateX(-20px);
   color: white;
 }
+
+.card-button {
+  margin: 0 1rem;
+}

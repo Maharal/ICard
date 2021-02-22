@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import home_page, signup, profile, get_card, get_all_cards
+from .views import home_page, signup, profile, get_card, get_all_cards, card
 
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^profile/$', profile, name='profile'),
     url(r'^get_card/$', get_card, name='get_card'),
     url(r'^get_all_cards/$', get_all_cards, name='get_all_cards'),
+    url(r'^card/(?P<card_id>\d+)/$', card, name='card'),
 ]
