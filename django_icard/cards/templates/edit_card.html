@@ -12,7 +12,7 @@
             <div class="form-group row">
                 <label class="form-cell col-sm-12">
                     <input type="text" class="form-control " id="name" name="name" placeholder=" " value="{{ card.name }}">
-                    <span class="placeholder">{{Nome}}</span>
+                    <span class="placeholder">Nome</span>
                 </label>
             </div>
                         
@@ -53,8 +53,11 @@
 
             {% csrf_token %}
 
-            <div class="btnLogin d-flex justify-content-center">
-                <input class="btn btn-success" type="submit" value="Adicionar">
+            <div class="edit-buttons d-flex justify-content-center">
+                <a href="{% url 'edit_card' card.id %}" class="card-button">
+                   <input class="btn btn-success" type="submit" value="Salvar">
+                </a>
+                <button onclick="goBack()" class=" btn btn-danger card-button">Cancelar</button>
             </div>
         </form>
     </div>
@@ -68,6 +71,11 @@
 <div class="loginDiv jumbotron">
     <h2 class="login-title">Por favor faça o login para continuar</h2>
     <a href="{% url 'login' %}">Log In</a>
-</div> 
+</div>
 {% endif %}
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 {% endblock %}

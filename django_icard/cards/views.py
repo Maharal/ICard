@@ -62,7 +62,6 @@ def card(request, card_id):
 
 def get_all_cards(request):
     cards = Card.objects.all()
-    print("Testando")
     return render(request, 'home.html', {'cards': cards})
 
 
@@ -70,10 +69,26 @@ def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
 
+
 def edit_card(request, card_id):
     cards = Card.objects.filter(id=card_id)
-    print(cards[0])
-    return render(request, 'edit_card.html', {'card': cards[0]})
+    if request.method == 'POST':
+        card = cards[0]
+        form = CardForm(request.POST, request.FILES)
+        if form.is_valid():
+            card.name = form.cleaned_data['name']
+            card.description = form.cleaned_data['description']
+            card.birthday = form.cleaned_data['birthday']
+            card.contact_email = form.cleaned_data['contact_email']
+            card.contact_phone = form.cleaned_data['contact_phone']
+
+            if form.cleaned_data['profile_image'] is not None:
+                card.profile_image = form.cleaned_data['profile_image']
+
+            card.save()
+            return redirect('/cards')
+    else:
+        return render(request, 'edit_card.html', {'card': cards[0]})
 
 def update_card(request, id):
     card = Card(id=id)
