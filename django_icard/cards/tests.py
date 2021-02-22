@@ -268,3 +268,109 @@ class IntegrationTests(TestCase):
         card_birthday = cards[0].birthday
         self.assertEqual('1983-10-30', card_birthday.strftime('%Y-%m-%d'))
 
+    def test_card_edit_birthday_fail_young(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '2018-10-30'})
+        self.assertNotEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_birthday = cards[0].birthday
+        self.assertNotEqual('2018-10-30', card_birthday.strftime('%Y-%m-%d'))
+
+    def test_card_edit_birthday_fail_old(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1800-10-30'})
+        self.assertNotEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_birthday = cards[0].birthday
+        self.assertNotEqual('1800-10-30', card_birthday.strftime('%Y-%m-%d'))
+
+    def test_card_edit_birthday_fail_short_phone(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '991',
+                     'birthday': '1983-09-30'})
+        self.assertNotEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_phone = cards[0].contact_phone
+        self.assertNotEqual('991', card_phone)
+
+    def test_card_edit_birthday_fail_long_phone(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '123431999999999',
+                     'birthday': '1983-09-30'})
+        self.assertNotEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_phone = cards[0].contact_phone
+        self.assertNotEqual('123431999999999', card_phone)
+
+    def test_card_delete_card(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/card/' + str(card_id) + '/')
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        self.assertEqual(len(cards), 0)

@@ -83,5 +83,6 @@ def edit_card(request, card_id):
 
             card.save()
             return redirect('/cards')
+        return render(request, 'edit_card.html', {'card': cards[0]})
     else:
         return render(request, 'edit_card.html', {'card': cards[0]})
