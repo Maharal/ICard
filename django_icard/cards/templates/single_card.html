@@ -40,9 +40,9 @@
     </div>
 </div>
 {% if user.id == card.user_id %}
-<div class="d-flex justify-content-center">
-    <a href="{% url 'edit_card' card.id %}">
-        <button class=" btn btn-success card-button">Editar Cartão</button>
+<div class="edit-buttons d-flex justify-content-center">
+    <a href="{% url 'edit_card' card.id %}" class="card-button">
+        <button class=" btn btn-success">Editar Cartão</button>
     </a>
     <button class=" btn btn-danger card-button">Excluir Cartão</button>
 </div>

@@ -316,7 +316,7 @@ input:focus + .placeholder, input:not(:-ms-input-placeholder) + .placeholder {
   color: white;
 }
 
-.card-button {
+.edit-buttons .card-button {
   margin: 0 1rem;
 }
 
