@@ -14,7 +14,11 @@
             <div class="card">
                 <div class="additional">
                   <div class="user-card">
-                    <img src="../media/{{card.profile_image}}" height="100" width="100" class="center profile-image">
+                    {% ifequal request.path "/cards/" %}
+                      <img src="../media/{{card.profile_image}}" height="100" width="100" class="center profile-image">
+                    {% else %}
+                      <img src="../../media/{{card.profile_image}}" height="100" width="100" class="center profile-image">
+                    {% endifequal %}
                   </div>
                   <div class="more-info">
                     <h1>{{ card.name }}</h1>

@@ -64,8 +64,7 @@ def card(request, card_id):
 def get_all_cards(request):
     cards = Card.objects.all()
     print("Testando")
-    return render(request, 'user_cards.html')
-    # return render(request, 'home.html', {'cards': dumps(cards)})
+    return render(request, 'home.html', {'cards': cards})
 
 
 def get_user_cards(request):
