@@ -49,6 +49,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               {% if user.is_authenticated %}
                 <a class="dropdown-item" href="#">{{ user.username }}</a>
+                <a class="dropdown-item" href="{% url 'get_card' %}">Novo Cartão</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
               {% else %}
                 <a class="dropdown-item" href="{% url 'login' %}">Log In</a>

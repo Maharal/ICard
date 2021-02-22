@@ -29,7 +29,6 @@ urlpatterns = [
     path('cards/', include('cards.urls')),
     path('cards/', include('django.contrib.auth.urls')),
     # path('getAllCards/', TemplateView.as_view(template_name='home.html'), name='get_all_cards'),
-    path('newCard/', TemplateView.as_view(template_name='new_card.html'), name='get_card'),
     path('', RedirectView.as_view(url='/cards', permanent=False), name='home'),
 ]
 
