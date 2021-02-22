@@ -9,16 +9,6 @@ from .forms import CardForm, SignUpForm
 from .models import Card
 
 
-class HomePageTest(TestCase):
-
-    def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<!DOCTYPE html>'))
-        self.assertTrue(html.endswith('</html>'))
-
-
 class LoginTest(TestCase):
 
     def test_login_page_has_email_fild(self):
@@ -187,3 +177,94 @@ class IntegrationTests(TestCase):
         c = Client()
         response = c.post('/cards/login/', {'username': 'michael', 'password': 'hEtz6Z78ZqM8dSRV'})
         self.assertNotEqual(response.status_code, 302)
+
+    def test_card_edit_name(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael Dunder', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'})
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_name = cards[0].name
+        self.assertEqual('Michael Dunder', card_name)
+
+    def test_card_edit_description(self):   
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss of 2020', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'})
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_description = cards[0].description
+        self.assertEqual('World\'s Best Boss of 2020', card_description)
+
+    def test_card_edit_email(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dunder.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'})
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        self.assertEqual(len(cards), 0)
+
+        cards = Card.objects.filter(contact_email='michael@dunder.com')
+        self.assertEqual(len(cards), 1)
+
+    def test_card_edit_birthday(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        c = Client()
+        response = c.post('/cards/edit_card/' + str(card_id) + '/', {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-10-30'})
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_birthday = cards[0].birthday
+        self.assertEqual('1983-10-30', card_birthday.strftime('%Y-%m-%d'))
+
