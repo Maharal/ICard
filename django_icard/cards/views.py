@@ -18,7 +18,6 @@ def home_page(request):
     cards = Card.objects.filter(user=request.user.id)
     print(cards)
     return render(request, 'home.html', {'cards': cards})
-    # return render(request, 'home.html')
 
 
 def login(request):
@@ -71,6 +70,10 @@ def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
 
+def edit_card(request, card_id):
+    cards = Card.objects.filter(id=card_id)
+    print(cards[0])
+    return render(request, 'edit_card.html', {'card': cards[0]})
 
 def update_card(request, id):
     card = Card(id=id)
