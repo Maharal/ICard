@@ -319,3 +319,7 @@ input:focus + .placeholder, input:not(:-ms-input-placeholder) + .placeholder {
 .card-button {
   margin: 0 1rem;
 }
+
+.profile-image {
+  border-radius: 50%;
+}
