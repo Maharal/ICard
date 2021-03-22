@@ -77,6 +77,11 @@ def get_all_cards(request):
     return render(request, 'home.html', {'cards': cards})
 
 
+def search(request):
+    cards = Card.objects.all()
+    return render(request, 'home.html', {'cards': cards})
+
+
 def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
