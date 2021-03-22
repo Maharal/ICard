@@ -39,8 +39,13 @@ def profile(request, user_id):
         return render(request, 'home.html', {'cards': cards})
     else:
         form = EditUserForm(instance=user[0])
-        print(form)
         return render(request, 'profile.html', {'user': user[0], 'form': form})
+
+
+def delete_profile(request, user_id):
+    user = User.objects.filter(id=user_id)
+    user[0].delete()
+    return render(request, 'home.html')
 
 
 def get_card(request):
