@@ -4,7 +4,72 @@
 
 {% block content %}
 <div class="background"></div>
+{% if user.is_authenticated %}
     <div class="loginDiv jumbotron">
-        <h1>Hello profile</h1>
+        <h2 class="login-title">Editar perfil</h2>
+        <form class="loginForm" method="post">
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="id_first_name" name="first_name" placeholder=" " value="{{ user.first_name }}">
+                    <span class="placeholder">Nome</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="id_last_name" name="last_name" placeholder=" " value="{{ user.last_name }}">
+                    <span class="placeholder">Sobrenome</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="text" class="form-control" id="id_user_name" name="username" placeholder=" " value="{{ user.username }}">
+                    <span class="placeholder">Usuário</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="email" class="form-control" id="id_email" name="email" placeholder=" " value="{{ user.email }}">
+                    <span class="placeholder">E-mail</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="password" class="form-control" id="id_password1" name="password1" minlength="8" placeholder=" ">
+                    <span class="placeholder">Senha</span>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="form-cell col-sm-12">
+                    <input type="password" class="form-control" id="id_password2" name="password2" minlength="8" placeholder=" ">
+                    <span class="placeholder">Confirmação da Senha</span>
+                </label>
+            </div>
+
+            {% csrf_token %}
+
+            <div class="edit-buttons d-flex justify-content-center">
+                <a href="{% url 'profile' user.id %}" class="card-button">
+                   <input class="btn btn-success" type="submit" value="Salvar">
+                </a>
+                <button onclick="goBack()" class=" btn btn-danger card-button">Cancelar</button>
+            </div>
+        </form>
     </div>
+{% else %}
+    <div class="loginDiv jumbotron">
+        <h2 class="login-title">Por favor faça o login para continuar</h2>
+        <a href="{% url 'login' %}">Log In</a>
+    </div>
+{% endif %}
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
 {% endblock %}

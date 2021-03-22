@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 from .forms import SignUpForm, CardForm
 from .models import Card
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -28,8 +29,12 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def profile(request):
-    return render(request, 'profile.html')
+def profile(request, user_id):
+    user = User.objects.filter(id=user_id)
+    if request.method == 'POST':
+        return render(request, 'profile.html', {'user': user[0]})
+    else:
+        return render(request, 'profile.html', {'user': user[0]})
 
 
 def get_card(request):
