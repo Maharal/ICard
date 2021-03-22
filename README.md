@@ -1,5 +1,8 @@
 # ICard
 
+## Quadro de Tarefas
+Clique [aqui](https://github.com/Maharal/ICard/projects/1) para acessar nosso quadro de tarefas
+
 **Alunos:**
 - Guilherme Miranda
 - Raphael Augusto Teixeira Silva
@@ -55,3 +58,25 @@ Cada classe é responsável por testar uma página da aplicação, de forma que 
   - R.: Conseguimos criar um fluxo para subir a aplicação no Heroku e preparamos o ambiente para execução de testes, além de criarmos alguns testes iniciais.
 - O que deu errado no sprint? Onde e o que podemos melhorar?
   - R.: Dificuldade de criação e manutenção da aplicação Django, bem como problemas ao subir a aplicação para o Heroku.
+
+## Sprint 2
+
+### Histórias e Tarefas
+TODO
+
+### Testes
+TODO
+
+### Retrospectiva
+TODO
+
+## Sprint 3
+
+### Histórias e Tarefas
+TODO
+
+### Testes
+TODO
+
+### Retrospectiva
+TODO
