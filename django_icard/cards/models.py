@@ -10,7 +10,8 @@ class Card(models.Model):
     birthday = models.DateField(max_length=30)
     contact_email = models.EmailField(max_length=255)
     contact_phone = models.CharField(max_length=30)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='creator')
+    favorited_users = models.ManyToManyField(User)
 
     class Meta:
         ordering = ['created_on']
