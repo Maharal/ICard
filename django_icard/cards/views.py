@@ -81,6 +81,8 @@ def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
 
+def favorite_cards(request):
+    return render(request, 'home.html')
 
 def edit_card(request, card_id):
     cards = Card.objects.filter(id=card_id)
