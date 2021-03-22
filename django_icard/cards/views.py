@@ -86,8 +86,25 @@ def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
 
-def favorite_cards(request):
-    return render(request, 'home.html')
+def favorite_card(request, card_id):
+    if request.method == 'POST':
+        cards = Card.objects.filter(id=card_id)
+        card = cards[0]
+        card.favorited_users.add(request.user.id) 
+    
+    return redirect('/cards/card/' + str(card_id))
+
+def remove_favorite_card(request, card_id):
+    if request.method == 'POST':
+        cards = Card.objects.filter(id=card_id)
+        card = cards[0]
+        card.favorited_users.remove(request.user.id) 
+    
+    return redirect('/cards/card/' + str(card_id))
+
+def all_favorite_cards(request):
+    cards = Card.objects.filter(favorited_users=request.user)
+    return render(request, 'home.html', {'cards': cards})
 
 def edit_card(request, card_id):
     cards = Card.objects.filter(id=card_id)

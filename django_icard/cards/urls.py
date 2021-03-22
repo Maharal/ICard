@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import edit_card, home_page, signup, profile, delete_profile, get_card, get_all_cards, card, favorite_cards
+from .views import edit_card, home_page, signup, profile, delete_profile, get_card, get_all_cards, card, all_favorite_cards, favorite_card, remove_favorite_card
 
 
 urlpatterns = [
@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^get_all_cards/$', get_all_cards, name='get_all_cards'),
     url(r'^card/(?P<card_id>\d+)/$', card, name='card'),
     url(r'^edit_card/(?P<card_id>\d+)/$', edit_card, name='edit_card'),
-    url(r'^favorite_cards/$', favorite_cards, name='favorite_cards'),
+    url(r'^all_favorite_cards/$', all_favorite_cards, name='all_favorite_cards'),
+    url(r'^favorite_card/(?P<card_id>\d+)/$', favorite_card, name='favorite_card'),
+    url(r'^remove_favorite_card/(?P<card_id>\d+)/$', remove_favorite_card, name='remove_favorite_card'),
 ]
