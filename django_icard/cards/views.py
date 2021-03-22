@@ -98,8 +98,8 @@ def remove_favorite_card(request, card_id):
     return redirect('/cards/card/' + str(card_id))
 
 def all_favorite_cards(request):
-    
-    return render(request, 'home.html')
+    cards = Card.objects.filter(favorited_users=request.user)
+    return render(request, 'home.html', {'cards': cards})
 
 def edit_card(request, card_id):
     cards = Card.objects.filter(id=card_id)
