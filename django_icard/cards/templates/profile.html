@@ -46,6 +46,14 @@
                 <button onclick="goBack()" class=" btn btn-danger card-button">Cancelar</button>
             </div>
         </form>
+
+        <br>
+
+        <div class="edit-buttons d-flex justify-content-center">
+            <a href="{% url 'delete_profile' user.id %}" class="card-button">
+                <input class="btn btn-danger" value="Excluir Perfil">
+            </a>
+        </div>
     </div>
 {% else %}
     <div class="loginDiv jumbotron">
