@@ -2,7 +2,7 @@ from json import dumps
 
 from django.shortcuts import render, redirect
 
-from .forms import SignUpForm, CardForm
+from .forms import SignUpForm, EditUserForm, CardForm
 from .models import Card
 from django.contrib.auth.models import User
 
@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 # Create your views here.
 def home_page(request):
     cards = Card.objects.filter(user=request.user.id)
-    print(cards)
     return render(request, 'home.html', {'cards': cards})
 
 
@@ -32,9 +31,16 @@ def signup(request):
 def profile(request, user_id):
     user = User.objects.filter(id=user_id)
     if request.method == 'POST':
-        return render(request, 'profile.html', {'user': user[0]})
+        form = EditUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+
+        cards = Card.objects.filter(user=request.user.id)
+        return render(request, 'home.html', {'cards': cards})
     else:
-        return render(request, 'profile.html', {'user': user[0]})
+        form = EditUserForm(instance=user[0])
+        print(form)
+        return render(request, 'profile.html', {'user': user[0], 'form': form})
 
 
 def get_card(request):

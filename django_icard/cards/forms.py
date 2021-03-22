@@ -3,6 +3,7 @@ import re
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -18,6 +19,17 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
+
+class EditUserForm(UserChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super(EditUserForm, self).__init__(*args, **kwargs)
+        del self.fields['password']
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
 
 
 class CardForm(forms.ModelForm):
