@@ -50,6 +50,16 @@
             {% csrf_token %}
         </form>
     </div>
+    {% else %}
+    <div class="edit-buttons d-flex justify-content-center">
+        <a href="#" class="card-button">
+            <button class=" btn btn-success">Adicionar aos Favoritos</button>
+        </a>
+        <!-- Provisório. Aqui será comparado se o cartão já está nos favoritos -->
+        <!-- <a href="#" class="card-button">
+            <button class=" btn btn-danger">Remover dos Favoritos</button>
+        </a> -->
+    </div>
     {% endif %}
 {% endif %}
 
