@@ -52,13 +52,17 @@
     </div>
     {% else %}
     <div class="edit-buttons d-flex justify-content-center">
-        <a href="#" class="card-button">
-            <button class=" btn btn-success">Adicionar aos Favoritos</button>
-        </a>
-        <!-- Provisório. Aqui será comparado se o cartão já está nos favoritos -->
-        <!-- <a href="#" class="card-button">
-            <button class=" btn btn-danger">Remover dos Favoritos</button>
-        </a> -->
+        {% if user not in card.favorited_users.all %}
+            <form action="{% url 'favorite_card' card.id %}" method="post">
+                <button class=" btn btn-success">Adicionar aos Favoritos</button>
+                {% csrf_token %}
+            </form>
+        {% else %}
+            <form action="{% url 'remove_favorite_card' card.id %}" method="post">
+                <button class=" btn btn-danger">Remover dos Favoritos</button>
+                {% csrf_token %}
+            </form>
+        {% endif %}
     </div>
     {% endif %}
 {% endif %}
