@@ -272,6 +272,27 @@ class IntegrationTests(TestCase):
         users = User.objects.filter(username='jimhalpert')
         self.assertEqual(len(users), 0)
 
+    def test_user_delete(self):
+        form_data = {'username': 'jimhalpert', 'first_name': 'Jim', 'last_name': 'Halpert',
+                     'email': 'jimhalpert@dundermifflin.com', 'password1': 'hEtz6Z78ZqM8dSRV',
+                     'password2': 'hEtz6Z78ZqM8dSRV'}
+        form = SignUpForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        c = Client()
+        response = c.post('/cards/login/', {'username': 'jimhalpert', 'password': 'hEtz6Z78ZqM8dSRV'})
+        self.assertEqual(response.status_code, 302)
+
+        users = User.objects.filter(username='jimhalpert')
+        user_id = users[0].id
+
+        response = c.post('/cards/delete_profile/' + str(user_id) + '/')
+        self.assertEqual(response.status_code, 200)
+
+        users = User.objects.filter(username='jimhalpert')
+        self.assertEqual(len(users), 0)
+
     def test_card_edit_description(self):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
                      'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
