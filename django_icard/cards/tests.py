@@ -4,7 +4,9 @@ from django.http import HttpRequest
 
 from .views import home_page, login, signup
 
-from .forms import CardForm, SignUpForm
+from django.contrib.auth.models import User
+
+from .forms import CardForm, SignUpForm, EditUserForm
 
 from .models import Card
 
@@ -237,6 +239,38 @@ class IntegrationTests(TestCase):
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
         card_name = cards[0].name
         self.assertEqual('Michael Dunder', card_name)
+
+    def test_user_edit_name(self):
+        form_data = {'username': 'jimhalpert', 'first_name': 'Jim', 'last_name': 'Halpert',
+                     'email': 'jimhalpert@dundermifflin.com', 'password1': 'hEtz6Z78ZqM8dSRV',
+                     'password2': 'hEtz6Z78ZqM8dSRV'}
+        form = SignUpForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        c = Client()
+        response = c.post('/cards/login/', {'username': 'jimhalpert', 'password': 'hEtz6Z78ZqM8dSRV'})
+        self.assertEqual(response.status_code, 302)
+
+        users = User.objects.filter(username='jimhalpert')
+        user_id = users[0].id
+
+        form_data = {'username': 'jim_halpert', 'first_name': 'new jim', 'last_name': 'halpert',
+                     'email': 'jimhalpert@dundermifflin.com'}
+        form = EditUserForm(data=form_data, instance=users[0])
+        self.assertTrue(form.is_valid(), True)
+
+        response = c.post('/cards/profile/' + str(user_id) + '/', form_data)
+        self.assertEqual(response.status_code, 200)
+
+        users = User.objects.filter(username='jim_halpert')
+        self.assertEqual(users[0].username, 'jim_halpert')
+        self.assertEqual(users[0].first_name, 'new jim')
+        self.assertEqual(users[0].last_name, 'halpert')
+        self.assertEqual(users[0].email, 'jimhalpert@dundermifflin.com')
+
+        users = User.objects.filter(username='jimhalpert')
+        self.assertEqual(len(users), 0)
 
     def test_card_edit_description(self):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
