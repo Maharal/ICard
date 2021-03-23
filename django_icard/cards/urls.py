@@ -1,11 +1,13 @@
 from django.conf.urls import url
-from .views import edit_card, home_page, signup, profile, delete_profile, get_card, get_all_cards, card, all_favorite_cards, favorite_card, remove_favorite_card
+from .views import edit_card, home_page, signup, profile, delete_profile, get_card, get_all_cards, card, \
+    all_favorite_cards, favorite_card, remove_favorite_card, search
 
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^signup/$', signup, name='signup'),
     url(r'^profile/(?P<user_id>\d+)/$', profile, name='profile'),
+    url(r'^search/$', search, name='search'),
     url(r'^delete_profile/(?P<user_id>\d+)/$', delete_profile, name='delete_profile'),
     url(r'^get_card/$', get_card, name='get_card'),
     url(r'^get_all_cards/$', get_all_cards, name='get_all_cards'),

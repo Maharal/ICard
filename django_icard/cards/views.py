@@ -1,5 +1,6 @@
 from json import dumps
 
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from .forms import SignUpForm, EditUserForm, CardForm
@@ -78,13 +79,15 @@ def get_all_cards(request):
 
 
 def search(request):
-    cards = Card.objects.all()
+    parameter = request.POST.get("search", "")
+    cards = Card.objects.filter(Q(name__contains=parameter) | Q(contact_email__contains=parameter))
     return render(request, 'home.html', {'cards': cards})
 
 
 def get_user_cards(request):
     cards = Card(user=request.user)
     return render(request, 'home.html', {'cards': dumps(cards)})
+
 
 def favorite_card(request, card_id):
     if request.method == 'POST':
@@ -94,6 +97,7 @@ def favorite_card(request, card_id):
     
     return redirect('/cards/card/' + str(card_id))
 
+
 def remove_favorite_card(request, card_id):
     if request.method == 'POST':
         cards = Card.objects.filter(id=card_id)
@@ -102,9 +106,11 @@ def remove_favorite_card(request, card_id):
     
     return redirect('/cards/card/' + str(card_id))
 
+
 def all_favorite_cards(request):
     cards = Card.objects.filter(favorited_users=request.user)
     return render(request, 'home.html', {'cards': cards})
+
 
 def edit_card(request, card_id):
     cards = Card.objects.filter(id=card_id)

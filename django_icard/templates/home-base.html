@@ -17,7 +17,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">I-Card</a>
+      <a class="navbar-brand" href="/cards/">I-Card</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,13 +32,14 @@
           </li>
         </ul>
         
-        <form method="post" class="mx-2 my-auto d-inline w-100" action="/search">
+        <form method="post" class="mx-2 my-auto d-inline w-100" action="/cards/search/">
           <div class="input-group">
-            <input class="form-control border border-right-0" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control border border-right-0" type="search" placeholder="Search" aria-label="Search" name="search">
             <span class="input-group-append">
               <button class="btn btn-outline-info border border-left-0" type="submit"><i class="fa fa-search"></i></button>
             </span>
           </div>
+          {% csrf_token %}
         </form>
     
         <ul class="navbar-nav">
