@@ -2,7 +2,7 @@ from django.test import Client
 from django.test import TestCase
 from django.http import HttpRequest
 
-from .views import home_page, login, signup
+from .views import favorite_card, home_page, login, signup
 
 from django.contrib.auth.models import User
 
@@ -474,6 +474,41 @@ class IntegrationTests(TestCase):
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
         self.assertEqual(len(cards), 0)
+
+    def test_favorite_cards(self):
+        form_data = {'username': 'jimhalpert', 'first_name': 'Jim', 'last_name': 'Halpert',
+                     'email': 'jimhalpert@dundermifflin.com', 'password1': 'hEtz6Z78ZqM8dSRV',
+                     'password2': 'hEtz6Z78ZqM8dSRV'}
+        form = SignUpForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        c = Client()
+        response = c.post('/cards/login/', {'username': 'jimhalpert', 'password': 'hEtz6Z78ZqM8dSRV'})
+        self.assertEqual(response.status_code, 302)
+
+        users = User.objects.filter(username='jimhalpert')
+
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+
+        # get card id
+        cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
+        card_id = cards[0].id
+
+        cards = Card.objects.filter(favorited_users=users[0])
+        self.assertEqual(len(cards), 0)
+
+        response = c.post('/cards/favorite_card/' + str(card_id) + '/')
+        self.assertEqual(response.status_code, 302)
+
+        cards = Card.objects.filter(favorited_users=users[0])
+        self.assertNotEqual(len(cards), 0)
+
 
     def test_card_search(self):
         form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
