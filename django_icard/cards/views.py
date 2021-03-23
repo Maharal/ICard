@@ -44,8 +44,9 @@ def profile(request, user_id):
 
 
 def delete_profile(request, user_id):
-    user = User.objects.filter(id=user_id)
-    user[0].delete()
+    if request.user.id == int(user_id):
+        user = User.objects.filter(id=user_id)
+        user[0].delete()
     return render(request, 'home.html')
 
 

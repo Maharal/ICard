@@ -5,6 +5,7 @@
 {% block content %}
 <div class="background"></div>
 {% if user.is_authenticated %}
+    {% if request.user.id|stringformat:"i" == request.get_full_path|slice:"15:-1" %}
     <div class="loginDiv jumbotron">
         <h2 class="login-title">Editar perfil</h2>
         <form class="loginForm" method="post">
@@ -55,6 +56,12 @@
             </a>
         </div>
     </div>
+    {% else %}
+    <div class="loginDiv jumbotron">
+        <h2 class="login-title">Você não tem permissão para editar esse perfil</h2>
+        <button onclick="goBack()" class=" btn btn-danger card-button">Voltar</button>
+    </div>
+    {% endif %}
 {% else %}
     <div class="loginDiv jumbotron">
         <h2 class="login-title">Por favor faça o login para continuar</h2>
