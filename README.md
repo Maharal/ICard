@@ -61,14 +61,32 @@ Cada classe é responsável por testar uma página da aplicação, de forma que 
 
 ## Sprint 2
 
-### Histórias e Tarefas
-TODO
+### Histórias e tarefas
+- O usuário pode criar/editar cartões
+  - Tela para criação de cartão (Guilherme)
+  - Tela para edição de cartão (Victor)
+  - Criar métodos CRUD para os dados do cartão (Guilherme)
+  - Criar testes de validação do cartão (Victor)
+- Um usuário pode pesquisar outros cartões
+  - Criar tela de pesquisa de cartões (Victor)
+- Um usuário pode marcar e visualizar cartões como favoritos
+  - Criar tela para visualização de cartões (Victor)
+  - Criar tela para visualizar um cartão (Victor)
+  - Compartilhar cartão via link (Victor e Guilherme)
 
 ### Testes
-TODO
+Durante a 2ª sprint foram criados testes unitários para verificar a criação de cartões, bem como testes de integração para verificar a edição de cartões e o funcionamento do sistema. Além disso, foi criado um teste fim-a-fim para exercitar o sistema por completo. Os testes foram distribuidos nas seguintes classes:
+
+- CardTests
+- IntegrationTests
+
+Cada classe é responsável por testar os respectivos aspectos citados no parágrafo acima. Por fim, os testes apresentaram uma cobertura total de 87%.
 
 ### Retrospectiva
-TODO
+- O que deu certo no sprint? Quais foram os pontos mais positivos?
+  - R.: Conseguimos criar a principal função do sistema, que é a de criação e edição de cartões, além de ser possível compartilhá-los por meio do link.
+- O que deu errado no sprint? Onde e o que podemos melhorar?
+  - R.: Gostaríamos de ter finalizado todas as histórias para fazer uma sprint 100% de produção na Sprint 3, porém não foi possível. Sendo assim, parte das histórias ainda será implementada na Sprint 3.
 
 ## Sprint 3
 
