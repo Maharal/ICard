@@ -474,3 +474,17 @@ class IntegrationTests(TestCase):
 
         cards = Card.objects.filter(contact_email='michael@dundermifflin.com')
         self.assertEqual(len(cards), 0)
+
+    def test_card_search(self):
+        form_data = {'name': 'Michael', 'description': 'World\'s Best Boss', 'profile_image': 'link',
+                     'contact_email': 'michael@dundermifflin.com', 'contact_phone': '31999999999',
+                     'birthday': '1983-09-30'}
+        form = CardForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        form.save()
+        c = Client()
+        response = c.post('/cards/search/', {'search': 'Mich'})
+        self.assertNotIn("Nenhum card encontrado!", response.content.decode('utf-8'))
+
+        response = c.post('/cards/search/', {'search': 'Pam'})
+        self.assertIn("Nenhum card encontrado!", response.content.decode('utf-8'))
