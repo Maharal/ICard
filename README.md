@@ -91,10 +91,22 @@ Cada classe é responsável por testar os respectivos aspectos citados no parág
 ## Sprint 3
 
 ### Histórias e Tarefas
-TODO
+- Um usuário pode marcar e visualizar cartões como favoritos 
+  -  Criar botão para marcar cartão como favorito (Victor)
+  -  Criar tela para ver cartões favoritos (Victor)
+  -  Criar métodos CRUD para cartões favoritos (Victor)
+- Um usuário pode pesquisar outros cartões 
+  -  Criar métodos CRUD (Guilherme)
+- Um usuário pode criar, ver, editar e apagar seu cadastro
+  -  Editar os dados do cadastro (Guilherme)
+  -  Deletar conta (Guilherme)
+- Testes com usuários (Wanderson)
 
 ### Testes
-TODO
+Durante a 3a sprint, foram criados testes de unidade e de integração para cada uma das novas funcionalidades implementadas, localizando-se nas classes CardTests e IntegrationTests, alcançando, dessa forma, a marca de 91% de cobertura. Além disso, foram conduzidos testes com usuários reais. 
 
 ### Retrospectiva
-TODO
+- O que deu certo no sprint? Quais foram os pontos mais positivos?
+  - R.: Conseguimos concluir todas as funcionalidades propostas para o sistema e conduzir testes com usuários reais.
+- O que deu errado no sprint? Onde e o que podemos melhorar?
+  - R.: Gostariamos de ter tido mais tempo para melhorar o visual de algumas páginas html.
