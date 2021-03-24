@@ -107,8 +107,11 @@ Durante a 3a sprint, foram criados testes de unidade e de integração para cada
 
 ### Testes com usuários
 Após o desenvolvimento, foram conduzidos 4 testes com usuários reais. Todos os testes foram realizados com o usuário utilizando o compartilhamento de tela do google meet para o acompanhamento das tarefas. 3 dos testes foram feitos no computador do usuário, e neles foi pedido que ele habilitasse a câmera para que o aplicador pudesse ver as expressões do usuário durante o teste. Um deles foi realizado utilizando o celular do usuário, e nesse teste não houve o acompanhamento da câmera.
+
 Cada usuário recebeu 3 tarefas que possuem como objetivo simular as ações mais comuns que serão executadas na plataforma. A primeira tarefa tinha como objetivo mapear o primeiro contato do usuário na plataforma, nela foi pedido que ele criasse uma conta e realizasse o login no site. Após isso, foi pedido que ele alterasse alguma informação do perfil e salvasse essa alteração.
+
 A segunda tarefa teve como foco os cartões do usuário, nela foi pedido que ele criasse um cartão. Após isso, foi pedido que o usuário editasse ele e o excluísse em sequência. O último teste teve como foco a busca por cartões de outro usuário, nessa tarefa foi pedido que o ele buscasse por um cartão específico na plataforma e para favoritar esse cartão. Em sequência, o usuário deveria entrar na aba de 'Cartões Favoritos', achar o cartão que ele favoritou e desfavoritar ele.
+
 Ao final dos testes, foi pedido para o usuário um feedback sobre os pontos positivos e negativos da sua interação com o sistema. As listas abaixo apresentam um compilado dos principais pontos informados por eles:
 - ##### Pontos Positivos
     - Os usuários não tiveram problemas durante a atualização dos dados presentes no perfil do atleta, porém utilizar o nome do usuário no menu ao invés de 'meu perfil' no menu pode não ser intuitivo para usuários mais leigos
